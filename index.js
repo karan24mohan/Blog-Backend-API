@@ -15,8 +15,7 @@ app.get("/", (req, resp) => {
 
 app.get("/user", async (req, resp) => {
   let result = await users.find();
-  const data = await result;
-  resp.send(data);
+  resp.send(result);
 });
 
 app.post("/login", async (req, resp) => {
