@@ -9,6 +9,10 @@ app.use(express.json());
 app.use(cors());
 const port = 3100;
 
+app.get("/", (req, resp) => {
+  resp.send("Backend Deployed on Railway.app!");
+});
+
 app.get("/user", async (req, resp) => {
   let result = await users.find();
   const data = await result;
