@@ -1,5 +1,5 @@
 const express = require("express");
-// require("./db/config");
+require("./db/config");
 const users = require("./db/user");
 const blog = require("./db/blogs");
 const cors = require("cors");
@@ -13,32 +13,32 @@ app.get("/", (req, resp) => {
   resp.send("Backend Deployed on Railway.app!");
 });
 
-// app.get("/user", async (req, resp) => {
-//   let result = await users.find();
-//   const data = await result;
-//   resp.send(data);
-// });
+app.get("/user", async (req, resp) => {
+  let result = await users.find();
+  const data = await result;
+  resp.send(data);
+});
 
-// app.post("/login", async (req, resp) => {
-//   let data = req.body;
-//   if (data) {
-//     let searchResult = await users.findOne(data);
-//     if (searchResult) {
-//       resp.send(`Login successfully ${searchResult}`);
-//     } else {
-//       resp.send("User not found");
-//     }
-//   } else {
-//     resp.send("User doesn't exist");
-//   }
-// });
+app.post("/login", async (req, resp) => {
+  let data = req.body;
+  if (data) {
+    let searchResult = await users.findOne(data);
+    if (searchResult) {
+      resp.send(`Login successfully ${searchResult}`);
+    } else {
+      resp.send("User not found");
+    }
+  } else {
+    resp.send("User doesn't exist");
+  }
+});
 
-// app.post("/signup", async (req, resp) => {
-//   let data = req.body;
-//   let result = new users(data);
-//   result = await result.save();
-//   resp.send(result);
-// });
+app.post("/signup", async (req, resp) => {
+  let data = req.body;
+  let result = new users(data);
+  result = await result.save();
+  resp.send(result);
+});
 
 app.get("/blogs", async (req, resp) => {
   let result = await blog.find();
