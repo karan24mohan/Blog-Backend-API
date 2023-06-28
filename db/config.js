@@ -1,2 +1,2 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://0.0.0.0/blog");
+mongoose.connect("mongodb://localhost:0.0.0.0/blog");
