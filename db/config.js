@@ -1,2 +1,2 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://blog-backend-api-production.up.railway.app/blog");
+mongoose.connect("mongodb://localhost:27017/blog");

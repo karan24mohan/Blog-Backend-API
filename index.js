@@ -23,7 +23,7 @@ app.post("/login", async (req, resp) => {
   if (data) {
     let searchResult = await users.findOne(data);
     if (searchResult) {
-      resp.send(`Login successfully ${searchResult}`);
+      resp.status(200).send(`Login successfully ${searchResult}`);
     } else {
       resp.send("User not found");
     }
@@ -34,9 +34,14 @@ app.post("/login", async (req, resp) => {
 
 app.post("/signup", async (req, resp) => {
   let data = req.body;
-  let result = new users(data);
-  result = await result.save();
-  resp.send(result);
+  let findUser = await users.findOne({ email: req.body.email });
+  if (findUser.email === req.body.email) {
+    resp.send("User Already Exist");
+  } else {
+    let result = new users(data);
+    result = await result.save();
+    resp.send(result);
+  }
 });
 
 app.get("/blogs", async (req, resp) => {
